@@ -40,7 +40,7 @@ var app = {
 		for(var i = 1; i <= cards; i++){
 			app.renderCard();
 			if(i % 4 == 0){
-				$('<div class="page-break"></div>').appendTo($('#container'));
+				//$('<div class="page-break"></div>').appendTo($('#container'));
 			}
 		}
 	},
@@ -48,7 +48,7 @@ var app = {
 		var card = $('<table class="card"></table>');
 
 		//Header
-		$('<tr class="header"><td>B</td><td>I</td><td>N</td><td>G</td><td>O</td></tr>').appendTo(card);
+		$('<tr class="header"><td><div>B</div></td><td><div>I</div></td><td><div>N</div></td><td><div>G</div></td><td><div>O</div></td></tr>').appendTo(card);
 
 		//Rows
 		var rows = [];
@@ -63,13 +63,14 @@ var app = {
 
 			for(var j = 0; j < app.rows; j++){
 				var cell = $('<td></td>');
+				var cellcontainer = $('<div></div>').appendTo(cell);
 
 				var item = Math.floor(Math.random() * clone.length);
 
 				if(i == 2 && j == 2){
-					cell.html('&nbsp;')
+					cellcontainer.html('&nbsp;')
 				}else{
-					cell.text(clone[item]);
+					cellcontainer.text(clone[item]);
 					app.removeItem(clone,clone[item]);
 				}
 
