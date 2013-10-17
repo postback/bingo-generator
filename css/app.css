@@ -35,7 +35,6 @@ body { padding-top: 70px; }
 }
 
 .play{
-  font-size: 400px;
   text-align: center;
   cursor: pointer;  
 }
@@ -94,8 +93,50 @@ body { padding-top: 70px; }
   }
 }
 
+
+@media screen and (min-width:1199px){
+  .play{
+    font-size: 400px;
+  }
+}
+
+@media screen and (max-width: 1000px){
+  #container div{
+    width: 50%;
+  }
+
+  .play{
+    font-size: 400px;
+  }
+}
+
 @media screen and (max-width:900px){
-	#container div{
-		width: 50%;
-	}
+  #container div{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .play{
+    font-size: 360px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .play{
+    font-size: 280px;
+  }
+
+  /* Retina-specific stuff here */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+    .play{
+      font-size: 200px;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .play{
+    font-size: 200px;
+  }
 }
