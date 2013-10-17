@@ -49,12 +49,15 @@ var app = {
 				var cell = $('<td></td>');
 
 				var item = Math.floor(Math.random() * clone.length);
-				app.removeItem(clone,clone[item]);
+				if(clone[item] == undefined){
+					console.log('ERROR: ' + item + ' - ' + clone.length);	
+				}
 
 				if(i == 2 && j == 2){
 					cell.html('&nbsp;')
 				}else{
 					cell.text(clone[item]);
+					app.removeItem(clone,clone[item]);
 				}
 
 				cell.appendTo(row);
