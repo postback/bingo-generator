@@ -37,7 +37,7 @@ body { padding-top: 70px; }
 .play{
   font-size: 400px;
   text-align: center;
-  cursor: pointer;
+  cursor: pointer;  
 }
 
 @media all {

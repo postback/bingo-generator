@@ -16,6 +16,11 @@ var app = {
 		$('#play').click(function(e){
 			app.play();
 		});
+
+		$('#container.play').click(function(e){
+			app.waitForItIndex = 0;
+			app.waitForIt();
+		});
 	},
 	generate : function(){
 
@@ -87,6 +92,7 @@ var app = {
 		window.print();
 	},
 	play : function(){
+		$('#container').text('');
 		$('#settingsform').hide();
 
 		app.gameNumbers = [];
@@ -94,32 +100,46 @@ var app = {
 			app.gameNumbers.push(i);
 		}
 
+		app.gameNumbers = app.shuffle(app.gameNumbers);
+
+		console.log(app.gameNumbers);
+
 		app.waitForItIndex = 0;
 		app.waitForIt();
 	},
 	showNumber : function(){
 		app.waitForItIndex = 0;
-		var item = Math.floor(Math.random() * app.gameNumbers.length);
-		app.removeItem(app.gameNumbers,item);
+		var item = app.gameNumbers[0];
+		
 		$('#container').text(item);
-		$('#container').click(function(e){
-			app.waitForItIndex = 0;
-			app.waitForIt();
-		});
 
-		clearTimeout(app.timeout);
+		app.removeItem(app.gameNumbers,item);
+		console.log(app.gameNumbers);
+		console.log(app.gameNumbers.length);
+
+		if(app.gameNumbers.length == 0){
+			$('#play').show();
+		}
 	},
 	waitForIt : function(){
 		var item = Math.floor(Math.random() * 75);
+		if(item < 1 || item > 75){
+			item = 1;//Easy
+		}
+		
 		$('#container').text(item);
+		clearTimeout(app.timeout);
 
 		if(app.waitForItIndex == 10){
-			clearTimeout(app.timeout);
-			app.timeout = setTimeout(function(){app.showNumber();},100);
+			app.showNumber();
 		}else{
 			app.waitForItIndex++;
 			app.timeout = setTimeout(function(){app.waitForIt();},100);
 		}
+	},
+	shuffle : function(array){ //v1.0 http://stackoverflow.com/a/6274381/32849
+    for(var j, x, i = array.length; i; j = Math.floor(Math.random() * i), x = array[--i], array[i] = array[j], array[j] = x);
+    return array;
 	},
 	removeItem : function(array, item){
 		for(var i in array){
