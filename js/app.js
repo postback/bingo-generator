@@ -39,6 +39,8 @@ var app = {
 		var card = $('<table class="card"></table>');
 		var clone = app.numbers.slice(0);
 
+		$('<tr class="header"><td>B</td><td>I</td><td>N</td><td>G</td><td>O</td></tr>').appendTo(card);
+
 		for(var i = 0; i < app.columns; i++){
 			var row = $('<tr></tr>');
 			row.appendTo(card);
@@ -49,7 +51,12 @@ var app = {
 				var item = Math.floor(Math.random() * clone.length);
 				app.removeItem(clone,clone[item]);
 
-				cell.text(clone[item]);
+				if(i == 2 && j == 2){
+					cell.html('&nbsp;')
+				}else{
+					cell.text(clone[item]);
+				}
+
 				cell.appendTo(row);
 			}
 		}

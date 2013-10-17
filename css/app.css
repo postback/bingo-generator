@@ -23,6 +23,10 @@ body { padding-top: 70px; }
   border-collapse: collapse;
 }
 
+.card .header{
+  font-weight: bold;
+}
+
 @media print{
 	.actions, dl, p, h1, .form, header, hr{
 		display: none;
