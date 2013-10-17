@@ -1,11 +1,9 @@
 //document.ready at the bottom of this file starts it all up
 var app = {
-	min : 1,
-	max : 75,
 	columns : 5,
 	rows : 5,
 	free : true,
-	numbers : [],
+	series : [],
 	init : function(){
 		$('#generate').click(function(e){
 			app.generate();
@@ -17,9 +15,17 @@ var app = {
 	},
 	generate : function(){
 
-		app.numbers = [];
-		for(var n = app.min; n < app.max; n++){
-			app.numbers.push(n);
+		var seriesStart = 1;
+		var seriesStop = 15;
+		app.series = [];
+		for(var s = 0; s < 5; s++){
+			var serie = [];
+			for(var n = seriesStart; n <= seriesStop; n++){
+				serie.push(n);
+			}
+			app.series.push(serie);
+			seriesStart += 15;
+			seriesStop += 15;
 		}
 
 		//Reset container
@@ -33,25 +39,32 @@ var app = {
 
 		for(var i = 1; i <= cards; i++){
 			app.renderCard();
+			if(i % 4 == 0){
+				$('<div class="page-break"></div>').appendTo($('#container'));
+			}
 		}
 	},
 	renderCard : function(){
 		var card = $('<table class="card"></table>');
-		var clone = app.numbers.slice(0);
 
+		//Header
 		$('<tr class="header"><td>B</td><td>I</td><td>N</td><td>G</td><td>O</td></tr>').appendTo(card);
 
-		for(var i = 0; i < app.columns; i++){
+		//Rows
+		var rows = [];
+		for(var r = 0; r < app.rows; r++){
 			var row = $('<tr></tr>');
 			row.appendTo(card);
+			rows.push(row);
+		}
 
-			for(var j = 0; j < app.columns; j++){
+		for(var i = 0; i < app.columns; i++){
+			var clone = app.series[i].slice(0);
+
+			for(var j = 0; j < app.rows; j++){
 				var cell = $('<td></td>');
 
 				var item = Math.floor(Math.random() * clone.length);
-				if(clone[item] == undefined){
-					console.log('ERROR: ' + item + ' - ' + clone.length);	
-				}
 
 				if(i == 2 && j == 2){
 					cell.html('&nbsp;')
@@ -60,7 +73,7 @@ var app = {
 					app.removeItem(clone,clone[item]);
 				}
 
-				cell.appendTo(row);
+				cell.appendTo(rows[j]);
 			}
 		}
 		card.appendTo($('#container'));

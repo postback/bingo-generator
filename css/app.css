@@ -10,7 +10,7 @@ body { padding-top: 70px; }
   border-collapse: collapse;
   float: left;
   width: 45%;
-  margin: 0 24px 24px 0;
+  margin: 0 24px 44px 0;
 }
 
 .card td{
@@ -23,8 +23,14 @@ body { padding-top: 70px; }
   border-collapse: collapse;
 }
 
-.card .header{
+.card .header td{
   font-weight: bold;
+  background-color: #eee;
+  font-size: 60px;
+}
+
+@media all {
+  .page-break { display: none; }
 }
 
 @media print{
@@ -34,7 +40,12 @@ body { padding-top: 70px; }
 
 	#container{
 		margin-top: 10px;
+    float: none;
 	}
+
+  .col-lg-12, .container, .row{
+    float: none;
+  }
 
 	#container div{
 		float: left;
@@ -46,8 +57,16 @@ body { padding-top: 70px; }
 	}
 
   .card td{
-    width: 5pt;
-    height: 3pt;
+    line-height: auto;
+    width: auto;
+    height: auto;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .page-break { 
+    display: block;
+    page-break-before: always;
   }
 }
 
