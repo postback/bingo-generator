@@ -16,11 +16,6 @@ var app = {
 		$('#play').click(function(e){
 			app.play();
 		});
-
-		$('#container.play').click(function(e){
-			app.waitForItIndex = 0;
-			app.waitForIt();
-		});
 	},
 	generate : function(){
 
@@ -92,6 +87,11 @@ var app = {
 		window.print();
 	},
 	play : function(){
+		$('#container.play').click(function(e){
+			app.waitForItIndex = 0;
+			app.waitForIt();
+		});
+
 		$('#container').text('');
 		$('#settingsform').hide();
 
@@ -113,12 +113,14 @@ var app = {
 		
 		$('#container').text(item);
 
-		app.removeItem(app.gameNumbers,item);
+		app.gameNumbers.splice(0,1);
+
 		console.log(app.gameNumbers);
 		console.log(app.gameNumbers.length);
 
 		if(app.gameNumbers.length == 0){
-			$('#play').show();
+			$('#settingsform').show();
+			$('#container.play').off('click');
 		}
 	},
 	waitForIt : function(){
