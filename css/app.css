@@ -34,6 +34,12 @@ body { padding-top: 70px; }
   line-height: 50px;
 }
 
+.play{
+  font-size: 400px;
+  text-align: center;
+  cursor: pointer;
+}
+
 @media all {
   .page-break { display: none; }
 }

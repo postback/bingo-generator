@@ -12,6 +12,10 @@ var app = {
 		$('#print').click(function(e){
 			app.print();
 		});
+
+		$('#play').click(function(e){
+			app.play();
+		});
 	},
 	generate : function(){
 
@@ -81,6 +85,41 @@ var app = {
 	},
 	print : function(){
 		window.print();
+	},
+	play : function(){
+		$('#settingsform').hide();
+
+		app.gameNumbers = [];
+		for(var i = 1; i <= 75; i++){
+			app.gameNumbers.push(i);
+		}
+
+		app.waitForItIndex = 0;
+		app.waitForIt();
+	},
+	showNumber : function(){
+		app.waitForItIndex = 0;
+		var item = Math.floor(Math.random() * app.gameNumbers.length);
+		app.removeItem(app.gameNumbers,item);
+		$('#container').text(item);
+		$('#container').click(function(e){
+			app.waitForItIndex = 0;
+			app.waitForIt();
+		});
+
+		clearTimeout(app.timeout);
+	},
+	waitForIt : function(){
+		var item = Math.floor(Math.random() * 75);
+		$('#container').text(item);
+
+		if(app.waitForItIndex == 10){
+			clearTimeout(app.timeout);
+			app.timeout = setTimeout(function(){app.showNumber();},100);
+		}else{
+			app.waitForItIndex++;
+			app.timeout = setTimeout(function(){app.waitForIt();},100);
+		}
 	},
 	removeItem : function(array, item){
 		for(var i in array){
