@@ -102,7 +102,7 @@ var app = {
 
 		app.gameNumbers = app.shuffle(app.gameNumbers);
 
-		console.log(app.gameNumbers);
+		//console.log(app.gameNumbers);
 
 		app.waitForItIndex = 0;
 		app.waitForIt();
@@ -115,8 +115,8 @@ var app = {
 
 		app.gameNumbers.splice(0,1);
 
-		console.log(app.gameNumbers);
-		console.log(app.gameNumbers.length);
+		//console.log(app.gameNumbers);
+		//console.log(app.gameNumbers.length);
 
 		if(app.gameNumbers.length == 0){
 			$('#settingsform').show();
